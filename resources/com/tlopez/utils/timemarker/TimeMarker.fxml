@@ -1,0 +1,105 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<GridPane fx:controller="com.tlopez.utils.timemarker.TimeMarkerController"
+          xmlns:fx="http://javafx.com/fxml" vgap="10" hgap="10" alignment="CENTER">
+    <rowConstraints>
+        <RowConstraints vgrow="NEVER"/>
+        <RowConstraints vgrow="NEVER"/>
+        <RowConstraints vgrow="NEVER"/>
+        <RowConstraints vgrow="NEVER"/>
+        <RowConstraints vgrow="ALWAYS"/>
+        <RowConstraints vgrow="NEVER"/>
+    </rowConstraints>
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" halignment="CENTER"/>
+    </columnConstraints>
+    <!-- Top Text Indicator -->
+    <GridPane GridPane.rowIndex="0" GridPane.columnIndex="0"
+              fx:id="statusPane">
+        <columnConstraints>
+            <ColumnConstraints hgrow="NEVER"/>
+            <ColumnConstraints hgrow="ALWAYS" halignment="CENTER"/>
+        </columnConstraints>
+        <ImageView fx:id="statusIcon"
+                   GridPane.rowIndex="0" GridPane.columnIndex="0"
+                   fitWidth="100" fitHeight="100">
+            <GridPane.margin>
+                <Insets topRightBottomLeft="10"/>
+            </GridPane.margin>
+        </ImageView>
+        <Label fx:id="statusLabel"
+               GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <!-- Timer Texts -->
+    <GridPane GridPane.rowIndex="1" GridPane.columnIndex="0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" halignment="CENTER"/>
+        </columnConstraints>
+
+        <Label text="Good Time" style="-fx-font: 30px 'Arial'; -fx-font-weight: bold"
+               GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <Text fx:id="goodTimeText" text="0:00:00.0"
+              GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+    </GridPane>
+
+    <GridPane GridPane.rowIndex="2" GridPane.columnIndex="0" hgap="10">
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" halignment="RIGHT"/>
+            <ColumnConstraints hgrow="ALWAYS" halignment="LEFT"/>
+        </columnConstraints>
+
+        <Label text="Total Time:" style="-fx-font: 16px 'Arial'"
+               GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <Text fx:id="totalTimeText" text="0:00:00.0"
+              GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <!-- Button Controls -->
+    <GridPane GridPane.rowIndex="3" GridPane.columnIndex="0" vgap="10" hgap="10">
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS"/>
+            <ColumnConstraints hgrow="NEVER"/>
+        </columnConstraints>
+
+        <Button fx:id="startStopButton" text="Start" styleClass="record-sales"
+                GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.rowSpan="2"
+                onAction="#onStartStop"/>
+        <Button fx:id="markButton" text="Mark" styleClass="record-sales"
+                GridPane.rowIndex="0" GridPane.columnIndex="1"
+                onAction="#onMark"/>
+        <Button fx:id="resetButton" text="Reset" styleClass="record-sales"
+                GridPane.rowIndex="1" GridPane.columnIndex="1"
+                onAction="#onReset"/>
+    </GridPane>
+
+    <!-- Marked Times Table -->
+    <TableView fx:id="timesTable"
+               GridPane.rowIndex="4" GridPane.columnIndex="0">
+        <columns>
+            <TableColumn text="Type" minWidth="100" fx:id="typeColumn"/>
+            <TableColumn text="Time" minWidth="150" fx:id="timeColumn"/>
+            <TableColumn text="Note" minWidth="250" fx:id="notesColumn"/>
+        </columns>
+    </TableView>
+
+    <!-- Export Link -->
+    <GridPane GridPane.rowIndex="5" GridPane.columnIndex="0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" halignment="LEFT"/>
+            <ColumnConstraints hgrow="ALWAYS" halignment="RIGHT"/>
+        </columnConstraints>
+
+        <Hyperlink fx:id="exportLink" text="Export Times" onAction="#onExport"
+                   GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <Label fx:id="versionLabel"
+               GridPane.rowIndex="0" GridPane.columnIndex="1">
+            <GridPane.margin>
+                <Insets right="5"/>
+            </GridPane.margin>
+        </Label>
+    </GridPane>
+</GridPane>
